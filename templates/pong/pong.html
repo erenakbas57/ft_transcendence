@@ -1,0 +1,19 @@
+{% extends '_index.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/pong/pong.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="card" id="settings-popup">
+    <h2>Game Settings</h2>
+    <input type="text" id="userInput" placeholder="Type something...">
+    <button  id="submitInput" class="btn btn-success" role="button">Submit</button>
+</div>
+
+{% load static %}
+    <script src="{% static 'js/pong/pong.js' %}" defer></script>
+
+{% endblock %}

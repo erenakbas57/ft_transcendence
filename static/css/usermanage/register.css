@@ -1,0 +1,65 @@
+/* 
+.container-register {
+    max-width: 500px;
+    padding: 20px;
+    border: 3px solid #001427;
+    background-color: rgba(230, 161, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 10px 14px rgba(0, 0, 0, 0.7);
+}
+
+.header-register {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.register-title {
+    font-size: 32px;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.btn-register {
+    border: 3px solid #001427;
+    white-space: nowrap;
+}
+
+.form-control-register {
+    border: 3px solid #001427;
+}
+
+@media (max-width: 768px) {
+    .header-register {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .register-title {
+        font-size: 28px;
+    }
+} */
+
+body {
+    background-color: #f8f9fa; /* Açık gri arka plan */
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card h1 {
+    font-size: 1.8rem;
+}
+
+.btn {
+    font-size: 1rem;
+    padding: 12px 20px;
+}
+
+.btn i {
+    margin-right: 10px;
+}

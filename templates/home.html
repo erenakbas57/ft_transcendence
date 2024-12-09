@@ -1,0 +1,45 @@
+
+{% extends '_index.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="hero">
+        <h1>Welcome to the Game Hub</h1>
+        <p>Choose Your Game Below</p>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Ping Pong</h5>
+                    <i class="fas fa-table-tennis fa-2xl my-3"></i>
+                    <i class="fa-solid fa-bowling-ball fa-2xl"></i>
+                    <i class="fas fa-table-tennis fa-2xl my-3"></i>
+                    <p class="card-text">Experience the thrill of Ping Pong</p>
+                    <a onclick="swapApp('/pong')" class="btn game-button" style="background-color: #007bff;">Play Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">RedPill - SourceCode - BluePill</h5>
+                    <i class="fa-solid fa-capsules fa-2xl my-3" style="color: #db0000;"></i>
+                    <i class="fa-solid fa-code fa-2xl my-3"></i>
+                    <i class="fa-solid fa-capsules fa-2xl my-3" style="color: #74C0FC;"></i>
+                    <p class="card-text">Rock-Paper-Scissors but better because this is Matrix</p>
+                    <a onclick="swapApp('/rps-ai')" class="btn game-button" style="background-color: #28a745;">Play Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

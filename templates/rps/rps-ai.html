@@ -1,0 +1,435 @@
+{% extends '_index.html' %}
+
+{% load static %}
+
+{% block title %}RPS Home{% endblock %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/rps.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pong/pong-home.css' %}">
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/rps.css' %}">
+  <style>
+    .game-container {
+      text-align: center;
+      margin-top: 50px;
+    }
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* 5 kolon */
+      gap: 10px; /* Aralık */
+      justify-content: center; /* Ortala */
+      align-items: center;
+    }
+    .choiceButton {
+      text-align: center;
+    }
+    .choiceButton img {
+      width: 48px;
+      height: auto;
+    }
+    .choiceButton p {
+      margin-top: 5px;
+      font-size: 18px;
+      color: black;
+    }
+    .choiceButton img {
+      width: 120px;
+      height: 120px;
+    }
+    .results-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 30px auto;
+      max-width: 600px;
+      font-size: 20px;
+    }
+    .results-container div {
+      width: 30%;
+    }
+    .result-text {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .gold {
+      color: gold;
+    }
+    .warn-btn {
+      min-width: 200px;
+    }
+  </style>
+{% endblock stylesheet %}
+
+{% block content %}
+
+
+<div class="modal fade v-50" id="info" tabindex="-1" aria-labelledby="info" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="friendsModalLabel">GamePlay</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="game-info">
+          <ul class="list-unstyled">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="{% static 'assets/rps/code.png' %}" width="48px">
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Option 1</a></li>
+                <li><a class="dropdown-item" href="#">Option 2</a></li>
+                <li><a class="dropdown-item" href="#">Option 3</a></li>
+                <li><a class="dropdown-item" href="#">Option 4</a></li>
+                <li><a class="dropdown-item" href="#">Option 5</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="{% static 'assets/rps/red.png' %}" width="48px">
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Option 1</a></li>
+                <li><a class="dropdown-item" href="#">Option 2</a></li>
+                <li><a class="dropdown-item" href="#">Option 3</a></li>
+                <li><a class="dropdown-item" href="#">Option 4</a></li>
+                <li><a class="dropdown-item" href="#">Option 5</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="{% static 'assets/rps/blue.png' %}" width="48px">
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Option 1</a></li>
+                <li><a class="dropdown-item" href="#">Option 2</a></li>
+                <li><a class="dropdown-item" href="#">Option 3</a></li>
+                <li><a class="dropdown-item" href="#">Option 4</a></li>
+                <li><a class="dropdown-item" href="#">Option 5</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="{% static 'assets/rps/oracle.png' %}" width="48px">
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Option 1</a></li>
+                <li><a class="dropdown-item" href="#">Option 2</a></li>
+                <li><a class="dropdown-item" href="#">Option 3</a></li>
+                <li><a class="dropdown-item" href="#">Option 4</a></li>
+                <li><a class="dropdown-item" href="#">Option 5</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="{% static 'assets/rps/architect.png' %}" width="48px">
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Option 1</a></li>
+                <li><a class="dropdown-item" href="#">Option 2</a></li>
+                <li><a class="dropdown-item" href="#">Option 3</a></li>
+                <li><a class="dropdown-item" href="#">Option 4</a></li>
+                <li><a class="dropdown-item" href="#">Option 5</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<header class="row text-center justify-content-center">
+  <h1>Welcome to the Real Game!</h1>
+  <p class="card-text">Rock Paper Scissors is gone. There is a new theme.</br>
+    Redpill - SourceCode - BluePill</br>
+    if you want you can try ultimate mode and try two extra choice</p>
+  <button type="button" class="col-3  btn btn-warning mb-2 warn-btn" data-bs-toggle="modal" data-bs-target="#info"><i class="fa-solid fa-circle-info mx-2"></i>Information</button>
+</header>
+
+<div class=" start-container container my-5" id="start-container">
+  <div class="row text-center justify-content-center">
+    <div class="col-md-5 col-lg-5 col-xl-5 col-sm-8 col-xs-8 mb-4">
+      <div class="card p-3">
+        <div class="row">
+          <div class="col">
+            <i class="fa-solid fa-capsules fa-2xl my-3" style="color: #db0000;"></i>
+            <i class="fa-solid fa-code fa-2xl my-3"></i>
+            <i class="fa-solid fa-capsules fa-2xl my-3" style="color: #74C0FC;"></i>
+          </div>
+        </div>
+        <form id="settingsForm" onsubmit="startGame(event)">
+          <div class="row justify-content-center align-items-center my-3">
+            <div class="col-3">
+              <label for="score">Score:</label>
+            </div>
+            <div class="col-9">
+              <select class="form-select" aria-label="Score" id="score">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+          <div class="row justify-content-center align-items-center my-3">
+            <div class="col-3">
+              <label for="mode">Mode:</label>
+            </div>
+            <div class="col-9">
+              <select class="form-select" aria-label="Default Mode" id="mode">
+                <option value="1" selected>Default</option>
+                <option value="2">Ultimate</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 text-wrap text-center">Start Game</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="game-container d-none" id="game-container">
+  <div class="scoreboard row">
+    <div class="col-6">
+      <h3>{{user.username}} Score:<span id="playerScore">0</span></h3>
+    </div>
+    <div class="col-6">
+      <h3>AI Score:<span id="aiScore">0</span></h3>
+    </div>
+  </div>
+
+  <div class="container mt-3">
+    <div class="row text-center gy-3 justify-content-center " id="choices">
+      <div class="col-4 col-sm-4 col-md-2">
+        <button class="btn" onclick="makeChoice('red')">
+          <img src="{% static 'assets/rps/red.png' %}" alt="red" class="img-fluid">
+        </button>
+        <p>RedPill</p>
+      </div>
+      <div class="col-4 col-sm-4 col-md-2">
+        <button class="btn" onclick="makeChoice('code')">
+          <img src="{% static 'assets/rps/code.png' %}" alt="code" class="img-fluid">
+        </button>
+        <p>SourceCode</p>
+      </div>
+      <div class="col-4 col-sm-4 col-md-2">
+        <button class="btn" onclick="makeChoice('blue')">
+          <img src="{% static 'assets/rps/blue.png' %}" alt="blue" class="img-fluid">
+        </button>
+        <p>BluePill</p>
+      </div>
+    </div>
+  </div>
+  
+  
+
+  <div id="result" class="row results-container d-none">
+    <div id="userChoice" class="col-4 col-sm-4 col-md-2"></div>
+    <div id="resultText" class="result-text">Make your move!</div>
+    <div id="aiChoice" class="col-4 col-sm-4 col-md-2"></div>
+  </div>
+</div>
+
+<div class="modal fade v-50" id="exit" tabindex="-1" aria-labelledby="exit" aria-hidden="true">
+  <div class="modal-dialog modal-md d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <!-- İlk satır: Yazı -->
+        <span id="exitResult">Bitti</span>
+        
+        <!-- İkinci satır: İkon butonları -->
+        <div class="d-flex justify-content-center gap-3">
+          <button class="btn btn-primary">
+            <i class="fa-solid fa-rotate-right"></i> Restart
+          </button>
+          <button class="btn btn-danger" onclick="swapApp('/home')">
+            <i class="fa-solid fa-circle-xmark"></i></i> Exit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+<script>
+  const additionalChoices = [
+    { name: 'oracle', imgSrc: '{% static "assets/rps/oracle.png" %}' },
+    { name: 'architect', imgSrc: '{% static "assets/rps/architect.png" %}' }
+  ];
+
+  let playerScore = 0;
+  let aiScore = 0;
+  let startTime;
+  const rules = {
+    basic: {
+      choices: ['code', 'red', 'blue'],
+      outcomes: {
+        red: { wins: ['blue'], loses: ['code'] },
+        code: { wins: ['red'], loses: ['blue'] },
+        blue: { wins: ['code'], loses: ['red'] }
+      }
+    },
+    ultimate: {
+      choices: ['red', 'code', 'blue', 'oracle', 'architect'],
+      outcomes: {
+        red: { wins: ['architect', 'blue'], loses: ['oracle', 'code'] },
+        code: { wins: ['red', 'oracle'], loses: ['blue', 'architect'] },
+        blue: { wins: ['code', 'architect'], loses: ['red', 'oracle'] },
+        oracle: { wins: ['blue', 'red'], loses: ['architect', 'code'] },
+        architect: { wins: ['code', 'oracle'], loses: ['red', 'blue'] }
+      }
+    }
+  };
+
+  function getGameSettings() {
+    const maxScore = parseInt(localStorage.getItem('maxScore'), 10) || 0;
+    const mode = localStorage.getItem('mode') || '1';
+    return { maxScore, mode };
+  }
+
+  function startGame(event) {
+    event.preventDefault();
+    startTime = new Date();
+    const maxScore = document.getElementById('score').value;
+    const mode = document.getElementById('mode').value;
+
+    localStorage.setItem('maxScore', maxScore);
+    localStorage.setItem('mode', mode);
+
+    console.log("maxScore: ", maxScore);
+    console.log("mode: ", mode);
+    // Mode 2 için ek seçenekleri yükle
+    if (mode === '2') {
+      const choicesContainer = document.getElementById('choices');
+    
+      additionalChoices.forEach(choice => {
+        const col = document.createElement('div');
+        col.classList.add('col-4', 'col-sm-4', 'col-md-2');  // responsive sınıflar ekliyoruz
+        const button = document.createElement('button');
+        button.classList.add('btn');
+        button.setAttribute('onclick', `makeChoice('${choice.name}')`);
+        const img = document.createElement('img');
+        img.src = choice.imgSrc;
+        img.alt = choice.name;
+        img.classList.add('img-fluid');  // Responsive resim için
+        button.appendChild(img);
+        const text = document.createElement('p');
+        text.textContent = choice.name.charAt(0).toUpperCase() + choice.name.slice(1);  // Metni büyük harfle başlat
+        col.appendChild(button);
+        col.appendChild(text);
+        choicesContainer.appendChild(col);
+      });
+    }
+  
+    document.getElementById('start-container').classList.add('d-none');
+    document.getElementById('game-container').classList.remove('d-none');
+  }
+
+  function makeChoice(playerChoice) {
+    const { maxScore, mode } = getGameSettings();
+    const selectedRules = mode === '2' ? rules.ultimate : rules.basic;
+
+    document.getElementById('choices').classList.add('d-none');
+    document.getElementById('result').classList.remove('d-none');
+    const aiChoice = selectedRules.choices[Math.floor(Math.random() * selectedRules.choices.length)];
+
+    document.getElementById('userChoice').innerHTML = `
+      <img src="{% static 'assets/rps/' %}${playerChoice}.png" alt="${playerChoice}" width="120">
+    `;
+
+    
+    setTimeout(() => {
+      document.getElementById('aiChoice').innerHTML = `
+        <img src="{% static 'assets/rps/' %}${aiChoice}.png" alt="${aiChoice}" width="120">
+      `;
+
+      const resultText = document.getElementById('resultText');
+      if (selectedRules.outcomes[playerChoice].wins.includes(aiChoice)) {
+        resultText.innerHTML = "You win!";
+        playerScore++;
+        document.getElementById('playerScore').textContent = playerScore;
+      } else if (selectedRules.outcomes[aiChoice].wins.includes(playerChoice)) {
+        resultText.innerHTML = "You lose!";
+        aiScore++;
+        document.getElementById('aiScore').textContent = aiScore;
+      } else {
+        resultText.innerHTML = "It's a draw!";
+      }
+
+      if (playerScore >= maxScore || aiScore >= maxScore) {
+        setTimeout(() => {
+          resetGame();
+        }, 500);
+      } else {
+        setTimeout(() => {
+          document.getElementById('choices').classList.remove('d-none');
+          document.getElementById('result').classList.add('d-none');
+        }, 2000);
+      }
+    }, 1000);
+  }
+
+  function resetGame() {
+    const endTime = new Date();
+
+    const gameDuration = (endTime - startTime) / 1000;
+    console.log('Game duration:', gameDuration);
+    document.getElementById('playerScore').textContent = playerScore;
+    document.getElementById('aiScore').textContent = aiScore;
+    document.getElementById('resultText').textContent = 'Make your move!';
+    document.getElementById('userChoice').innerHTML = '';
+    document.getElementById('aiChoice').innerHTML = '';
+    document.getElementById('game-container').classList.add('d-none');
+    var exitModal = new bootstrap.Modal(document.getElementById('exit'));
+    var exitResult = document.getElementById('exitResult');
+    if (playerScore >= aiScore) {
+      exitResult.textContent = "You Win!";
+    } else {
+      exitResult.textContent = "You Lose!";
+    }
+
+    const username = '{{ user.username }}';
+    const gameResult = {
+      username: username,  // Bu değeri oyuncu adından alabilirsiniz
+      ai_name: 'AI',  // AI ismi
+      player_score: playerScore,
+      ai_score: aiScore,
+      result: playerScore >= aiScore ? 'Win' : 'Lose',
+      duration: gameDuration,  // Oyun süresi (saniye cinsinden)
+    };
+
+      // Backend API'ye POST isteği gönder
+    fetch('/rps-game-save/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCSRFToken(),  // Eğer CSRF koruması kullanıyorsanız, CSRF token gönderin
+      },
+      body: JSON.stringify(gameResult),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Game result saved:', data);
+    })
+    .catch(error => {
+      console.error('Error saving game result:', error);
+    });
+    playerScore = 0;
+    aiScore = 0;
+    exitModal.show();
+  }
+</script>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+ /* 
+    Image via https://www.peakpx.com
+*/
+
+
+
+.container-edit-profile{
+    margin-top: 1%;
+    max-width: 500px;
+    padding: 20px;
+    border: 5px solid #001427;
+    border-radius: 10px;
+    background-color:rgba(255, 255, 255, 0.53);
+    box-shadow: 0 21px 21px rgba(0, 0, 0, 1);
+}
+
+.btn-edit-profile{
+    border: 3px solid #001427;
+}
+
+.form-control-edit-profile{
+    border: 3px solid #001427;
+}
+
+.form-group-edit-profile{
+    margin: 1rem;
+}
+
+.rounded-circle-edit-profile{
+    border: 5px solid #001427;
+}
