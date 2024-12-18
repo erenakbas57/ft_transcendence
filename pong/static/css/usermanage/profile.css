@@ -1,75 +1,147 @@
-/* General Design */
-.profile-container {
-  margin-top: 30px;
-  font-family: 'Arial', sans-serif;
-}
+
 
 .profile-card {
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: #000000; 
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); 
 }
 
 .profile-avatar {
+  border-radius: 50%;
   width: 150px;
   height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  
-  border: 5px solid #ddd;
+  border: 3px solid #00FF00;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
 }
 
-#pong-stats, #rps-stats, #total-stats {
-  display: flex;
-  flex-direction: column; /* Dikey sıralama */
-  justify-content: center; /* Dikey ortalama */
-  align-items: center; /* Yatay ortalama */
-  text-align: center; /* Metinleri ortalama */
-  height: 100%; /* Gerekirse yükseklik ayarı */
+.btn {
+  background-color: #00FF00;
+  color: #000000;
+  border: 2px solid #00FF00;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.7); 
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.profile-avatar.online {
-  border-color: rgb(62, 220, 62);
-}
-
-.profile-avatar.offline {
-  border-color: red;
-}
-
-.profile-info {
-  margin-top: 15px;
-}
-
-.profile-info h2 {
-  font-size: 24px;
-  color: #333;
-}
-
-.profile-info p {
-  font-size: 18px;
-  color: #777;
+.btn:hover {
+  background-color: #000000;
+  color: #00FF00;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 1);
 }
 
 .coin {
-  
   width: 40px;
   height: 40px;
-  vertical-align: middle;
-  margin-right: 5px;
+  margin-right: 10px;
+  filter: drop-shadow(0 0 10px #00FF00); 
+  animation: pulse 2s infinite;
 }
 
-.coin-text {
-  font-size:24px;
+@keyframes pulse {
+  0%, 100% {
+      transform: scale(1);
+      filter: brightness(1);
+  }
+  50% {
+      transform: scale(1.2);
+      filter: brightness(1.5);
+  }
 }
 
-.stat-item {
-  font-size: 16px;
-  margin-bottom: 10px;
+.accordion-button {
+  background-color: #000000;
+  color: #00FF00; 
+  border: 1px solid #00FF00;
+  transition: background-color 0.3s ease;
 }
 
+.accordion-button:not(.collapsed) {
+  background-color: #000000;
+  color: #00FF00;
+  border: 1px solid #00FF00;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-button:hover {
+  background-color: #00FF00;
+  color: #000000;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
+}
+
+.accordion-body {
+  background-color: #000000;
+  color: #00FF00;
+  border: 1px solid #00FF00;
+}
+
+/* Table styling */
+.table {
+  background-color: #000000;
+  color: #00FF00;
+  border: 1px solid #00FF00;
+}
+
+.table th, .table td {
+  border: 1px solid #00FF00;
+  padding: 10px;
+  text-align: center;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+  background-color: #111111;
+}
+
+.page-link {
+  color: #00FF00;
+  background-color: #000000;
+  border: 1px solid #00FF00;
+}
+
+.page-link:hover {
+  background-color: #00FF00;
+  color: #000000;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+}
+
+/* Chart and Stats Section */
 .chart-label {
-  font-size: 14px;
-  color: #555;
+  color: #00FF00;
+  text-align: center;
+}
+
+.chart-label span {
+  font-weight: bold;
+}
+
+h2.history-header {
+  color: #00FF00;
+  text-align: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+}
+
+/* Page Heading */
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #00FF00;
+  text-align: center;
+}
+
+/* General Styling for Links */
+a {
+  color: #00FF00;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000000;
+  background-color: #00FF00;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 /* Table Styling */
@@ -79,20 +151,25 @@ table {
   table-layout: fixed; /* This helps with responsiveness */
 }
 
+tr td  {
+  color: #00FF00 !important;
+}
 th, td {
   padding: 12px;
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid #00FF00;
   word-wrap: break-word; /* Ensures that text wraps within table cells */
+  color: #00FF00;
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color: #000000;
   font-weight: bold;
+  color: #00FF00;
 }
 
 tbody tr:hover {
-  background-color: #f9f9f9;
+  background-color: #000000;
 }
 
 .page-link {
@@ -111,10 +188,6 @@ tbody tr:hover {
 
 .accordion-item {
   margin-bottom: 15px;
-}
-
-.accordion-header {
-  background-color: #f8f9fa;
 }
 
 .accordion-body {

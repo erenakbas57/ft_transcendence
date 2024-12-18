@@ -17,7 +17,58 @@
         font-family: 'YourFont', sans-serif;
     }
 
-    
+    h1, h2, .rank-number {
+        text-shadow: 0 0 8px #00ff00, 0 0 20px #00ff00;
+    }
+
+    .leader-card {
+        background: rgba(0, 0, 0, 0.8);
+        color: #00ff00;
+        border: 1px solid #00ff00;
+        border-radius: 15px;
+        box-shadow: 0 0 10px #00ff00;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-transform: uppercase;
+    }
+
+    .leader-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px #00ff00;
+    }
+
+    .first-place {
+        background: linear-gradient(225deg, #006400, #00ff00);
+    }
+
+    .second-place {
+        background: linear-gradient(225deg, #005500, #00e600);
+    }
+
+    .third-place {
+        background: linear-gradient(225deg, #004000, #00cc00);
+    }
+
+    .medal i {
+        font-size: 2rem;
+        text-shadow: 0 0 10px #00ff00;
+    }
+
+    .coin {
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+            filter: brightness(1);
+        }
+        50% {
+            transform: scale(1.2);
+            filter: brightness(1.5);
+        }
+    }
+
+
     
 </style>
 {% endblock %}
@@ -86,25 +137,23 @@
         </div>
     </div>
 
-    <!-- Remaining Players (4 to 10) -->
-    <div class="row pb-5">
-        {% for user in users_other%}
+    <!-- Remaining Players -->
+    <div class="row">
+        {% for user in users_other %}
         <div class="col-md-4 col-sm-6 my-3">
-            <div class="leader-card py-4" onclick="pageHandler('/profile/{{ user.user.username }}')">
-                <div class="rank-number">#{{user.rank}}</div>
-                {% if user.user.avatar %}
-                    <img src="{{ user.user.avatar.url }}" alt="Leader" class="leader-avatar">
-                {% else %}
-                    <img src="https://via.placeholder.com/100" alt="Friend" class="rounded-circle friend-img" width="50px" height="50px">
-                {% endif %}
-                <h2 class="mt-3">{{ user.user.username }}</h2>
-                <div class="col d-flex justify-content-center align-items-center"> 
-                    <img class="coin " width="40px" src="{% static 'assets/m-coin.png' %}" > <span class="coin-text">{{ user.user.mp }}</span></img>
+            <div class="leader-card" onclick="pageHandler('/profile/{{ user.user.username }}')">
+                <div class="rank-number">#{{ user.rank }}</div>
+                <img src="{{ user.user.avatar.url }}" alt="Leader" class="leader-avatar">
+                <h2>{{ user.user.username }}</h2>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img class="coin" src="{% static 'assets/m-coin.png' %}" width="40px">
+                    <span class="coin-text">{{ user.user.mp }}</span>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
+
 
 {% endblock %}

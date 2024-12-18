@@ -33,9 +33,6 @@ CLIENT_SECRET = environ.get('CLIENT_SECRET')
 
 SECRET_KEY = environ.get('DJANGO_SECRET_KEY')
 
-
-
- 
 INSTALLED_APPS = [
     'usermanage',
     'game',
