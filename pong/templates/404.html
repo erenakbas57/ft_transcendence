@@ -1,0 +1,77 @@
+{% extends '_index.html' %}
+
+{% load static %}
+
+{% block title %}404{% endblock %}
+
+{% block stylesheet%}
+<style>
+    @font-face {
+        font-family: 'YourFont';
+        src: url("{% static 'css/fonts/OCRA.ttf' %}") format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .terminal {
+        background-color: #000000;
+        background-image: radial-gradient(#11581E, #041607);
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: 'YourFont', sans-serif;
+        color: rgba(128, 255, 128, 0.8);
+        text-shadow:
+            0 0 1ex rgba(51, 255, 51, 1),
+            0 0 2px rgba(255, 255, 255, 0.8);
+        height: 100vh;
+        width: 100%;
+        text-transform: uppercase;
+    }
+
+    .output {
+        font-size: 14px;
+        color: rgba(128, 255, 128, 0.8);
+        text-shadow:
+            0 0 1px rgba(51, 255, 51, 0.4),
+            0 0 2px rgba(255, 255, 255, 0.8);
+    }
+
+    a {
+        color: #fff !important;
+        text-decoration: none;
+        text-shadow: none;
+    }
+
+    .errorcode {
+        color: white;
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+{% block error %}
+<div class="terminal p-5">
+    <h1>Error <span class="errorcode">404</span></h1>
+    <p class="output">
+        > NEO: Couldn't find the page you are looking for.
+    </p>
+    <p class="output">
+        > NEO: Matrix has you, sorry, I mean, the page has you.
+    </p>
+    <p class="output">
+        > NEO: If you are looking for the white rabbit, you are in the wrong place.
+    </p>
+    <p class="output">
+        > NEO: Please try <a onclick="pageHandler('/search')">[search]</a> or <a onclick="pageHandler('/home')">[homepage]</a>.
+    </p>
+    <p class="output">
+        > NEO: Good luck.
+    </p>
+</div>
+
+
+{% endblock %}

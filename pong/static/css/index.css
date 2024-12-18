@@ -1,0 +1,54 @@
+/* Özel sınıf için ortak stil */
+.custom-button {
+    display: inline-block;
+    width: 150px;
+    /* Masaüstünde sabit genişlik */
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    /* Hover efekti için animasyon */
+}
+
+/* Başarı (Login) butonu */
+.custom-button.btn-success {
+    background-color: #28a745;
+    color: #fff;
+    border: 2px solid #218838;
+}
+
+.custom-button.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* Kayıt (Register) butonu */
+.custom-button.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: 2px solid #0056b3;
+}
+
+.custom-button.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #003f7f;
+}
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+    .custom-button {
+        width: 100%;
+        /* Mobilde tam genişlik */
+        margin-bottom: 10px;
+        /* Butonlar arasında boşluk */
+    }
+}
+
+
+
+
+
+
+

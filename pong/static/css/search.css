@@ -1,0 +1,72 @@
+/* Kullanıcı sonuçlarını gösteren kapsayıcı */
+#searchResults {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Başlangıçta her satırda 4 kart */
+    gap: 20px; /* Kartlar arasındaki boşluk */
+    justify-content: center; /* Grid'i yatayda ortalar */
+    align-items: center; /* Grid'i dikeyde ortalar */
+    max-width: 100%; /* Maksimum genişlik sınırlandırması */
+    margin: 0 auto; /* Ortalamayı sağlamak için */
+}
+
+/* Ekran küçüldükçe, kart sayısını azaltacağız */
+
+/* 1200px genişlikte 4 kart göster */
+@media (max-width: 1200px) {
+    #searchResults {
+        grid-template-columns: repeat(3, 1fr); /* 3 kart göster */
+    }
+}
+
+/* 992px genişlikte 3 kart göster */
+@media (max-width: 992px) {
+    #searchResults {
+        grid-template-columns: repeat(2, 1fr); /* 2 kart göster */
+    }
+}
+
+/* 768px genişlikte 2 kart göster */
+@media (max-width: 768px) {
+    #searchResults {
+        grid-template-columns: repeat(1, 1fr); /* 1 kart göster */
+    }
+
+}
+
+/* Kullanıcı kartlarını merkezde hizalamak için */
+.user-result {
+    text-decoration: none;
+    color:black;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* Kart genişliği %100 */
+    justify-self: center; /* Grid hücresini ortalar */
+}
+
+/* Kart üzerine geldiğinde büyütme efekti */
+.user-result:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Profil resmi */
+.user-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}

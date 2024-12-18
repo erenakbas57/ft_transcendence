@@ -1,0 +1,103 @@
+{% extends '_index.html' %}
+{% load static %}
+{% block title %} Local Pong {% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/pong/pong-multiplayer.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="content-container">
+    <div id="settings-popup" class="popup centered-popup" style="display: flex;">
+        <div class="settings-header">
+            <h3>Multi Pong Settings</h3>
+        </div>
+        <div class="settings-body">
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3">
+                    <label for="theme">Theme:</label>
+                </div>
+                <div class="col-9">
+                    <select id="theme" class="form-select">
+                        <option value="default" selected>Default Theme</option>
+                        <option value="football">Football</option>
+                        <option value="basketball">Basketball</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-6 text-start">
+                    <label for="paddle-color">Paddle Color:</label>
+                </div>
+                <div class="col-1">
+                    <input type="color" id="paddle-color" value="#00ff00" />
+                </div>
+            </div>
+            
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3">
+                    <label for="rounds">Score:</label>
+                </div>
+                <div class="col-9">
+                    <select class="form-select" aria-label="Rounds" id="rounds">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3">
+                    <label for="player1-name">Player 1 Name(w,s):</label>
+                </div>
+                <div class="col-9">
+                    <input type="text" id="player1-name" class="form-control" placeholder="Enter Player 1 Name">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3">
+                    <label for="player2-name">Player 2 Name (⇑⇓):</label>
+                </div>
+                <div class="col-9">
+                    <input type="text" id="player2-name" class="form-control" placeholder="Enter Player 2 Name">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3">
+                    <label for="player3-name">Player 3 Name (v,b):</label>
+                </div>
+                <div class="col-9">
+                    <input type="text" id="player3-name" class="form-control" placeholder="Enter Player 3 Name">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3">
+                    <label for="player4-name">Player 4 Name (k,l):</label>
+                </div>
+                <div class="col-9">
+                    <input type="text" id="player4-name" class="form-control" placeholder="Enter Player 4 Name">
+                </div>
+            </div>
+            
+            <button id="start-game" class="btn btn-primary">Start Game</button>
+        </div>
+    </div>
+</br></br></br>
+    <canvas id="gameCanvas" width="600" height="600" style="display: none;"></canvas>
+
+    <div id="result-popup" class="popup centered-popup" style="display: none;">
+        <div id="result-text"></div>
+        <div id="score-text"></div>
+        <div class="button-container">
+            <button id="restart" class="btn btn-primary">Restart</button>
+            <button id="quit" onclick="pageHandler('/pong')" class="btn btn-danger">Exit</button>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+{% endblock %}

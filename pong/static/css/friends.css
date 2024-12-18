@@ -1,0 +1,31 @@
+.friend-img-container {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    width: 60px; 
+    height: 60px;
+}
+
+.friend-img {
+    border: 5px solid transparent;
+    object-fit: cover;
+}
+
+.friend-img-container.online .friend-img {
+    border-color: #28a745;
+}
+
+.friend-img-container.offline .friend-img {
+    border-color:rgb(230, 24, 6); 
+}
+
+.friend-img-container.online .status-indicator {
+    background-color: #28a745;
+}
+
+.friend-img-container.offline .status-indicator {
+    background-color:rgb(230, 24, 6); 
+}
+.text-muted, .text-name {
+    cursor:pointer;
+}

@@ -1,0 +1,77 @@
+{% extends '_index.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<style>
+    .hero {
+        position: relative; /* Hero container'ını relative yapıyoruz */
+        overflow: hidden;
+        background-color: black; /* Siyah arkaplan, canvas altındaki renk */
+        z-index: 1; /* İçeriği canvas'ın önüne getiriyor */
+    }
+    
+    .matrix-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Hero konteynerinin altına yerleştiriyoruz */
+    }
+    
+    .matrix-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Canvas tıklanabilir olmasın */
+    }
+
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+<div class="hero my-5">
+</div>
+
+<div class="container mt-5">
+    <div class="row text-center">
+        <!-- Ping Pong Kartı -->
+        <div class="col-md-6 d-flex align-items-stretch mb-4">
+            <div class="card game-card ping-pong-card w-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Ping Pong</h5>
+                    <div class="game-icons mb-3">
+                        <i class="fas fa-table-tennis fa-2xl"></i>
+                        <i class="fas fa-bowling-ball fa-2xl"></i>
+                        <i class="fas fa-table-tennis fa-2xl"></i>
+                    </div>
+                    <p class="card-text">Experience the excitement of Ping Pong with immersive gameplay.</p>
+                    <a class="btn game-button mt-auto" onclick="pageHandler('/pong')">Play Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- RPS Kartı -->
+        <div class="col-md-6 d-flex align-items-stretch mb-4">
+            <div class="card game-card matrix-card w-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Rock Paper Scissors</h5>
+                    <div class="game-icons mb-3">
+                        <i class="fa-solid fa-capsules fa-2xl"></i>
+                        <i class="fa-solid fa-code fa-2xl"></i>
+                        <i class="fa-solid fa-capsules fa-2xl"></i>
+                    </div>
+                    <p class="card-text">Classic RPS, now with a Matrix twist. Can you outsmart the AI?</p>
+                    <a class="btn game-button mt-auto" onclick="pageHandler('/rps-ai')">Play Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

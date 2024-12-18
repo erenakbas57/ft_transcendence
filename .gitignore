@@ -1,6 +1,1 @@
 .env
-db.sqlite3
-/staticfiles/
-reset.sh
-start.sh
-/media/

@@ -1,5 +1,0 @@
-django
-django-allauth
-requests
-django-environ
-python-dotenv
