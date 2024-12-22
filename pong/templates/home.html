@@ -1,0 +1,79 @@
+{% extends '_index.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<style>
+    .hero {
+        position: relative; /* Hero container'ını relative yapıyoruz */
+        overflow: hidden;
+        background-color: black; /* Siyah arkaplan, canvas altındaki renk */
+        z-index: 1; /* İçeriği canvas'ın önüne getiriyor */
+    }
+
+    .matrix-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Hero konteynerinin altına yerleştiriyoruz */
+    }
+
+    .matrix-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Canvas tıklanabilir olmasın */
+    }
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="hero text-center py-5">
+        <div class="matrix-bg"></div>
+
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6 d-flex align-items-stretch mb-2">
+            <div class="card game-card ping-pong-card text-center shadow w-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Ping Pong</h5>
+                    <div class="game-icons">
+                        <i class="fas fa-table-tennis fa-2xl" style="color: #007bff;"></i>
+                        <i class="fa-solid fa-bowling-ball fa-2xl" style="color: #28a745;"></i>
+                        <i class="fas fa-table-tennis fa-2xl" style="color: #007bff;"></i>
+                    </div>
+                    <p class="card-text">Experience the excitement of Ping Pong with different options</p>
+                    <a onclick="pageHandler('/pong')" class="btn game-button mt-auto">Play Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 d-flex align-items-stretch mb-2">
+            <div class="card game-card matrix-card text-center shadow w-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">RPS</h5>
+                    <div class="game-icons">
+                        <i class="fa-solid fa-capsules fa-2xl" style="color: #db0000;"></i>
+                        <i class="fa-solid fa-code fa-2xl"></i>
+                        <i class="fa-solid fa-capsules fa-2xl" style="color: #74C0FC;"></i>
+                    </div>
+                    <p class="card-text">Classic RPS but better because this is Matrix</p>
+                    <a onclick="pageHandler('/rps-ai')" class="btn game-button mt-auto">Play Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

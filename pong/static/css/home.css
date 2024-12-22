@@ -1,0 +1,64 @@
+
+/* Hero section */
+.hero {
+    border-radius: 10px;
+    height: 100px;
+    color: white;
+    padding: 40px;
+}
+
+
+/* Genel kart stilleri */
+.game-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333333;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #666666;
+}
+
+.game-button {
+    background-color: #333333d0;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.game-button:hover {
+    background-color: #555555a2;
+}
+
+/* Ping Pong kartına özel renkler */
+.ping-pong-card {
+    background-color: #e6f7ff;
+    border-left: 5px solid #007bff;
+}
+
+.ping-pong-card .game-icons i {
+    color: #007bff;
+}
+
+/* RPS kartına özel renkler */
+.matrix-card {
+    background-color: #dcf2ba;
+    border-left: 5px solid #28a745;
+}

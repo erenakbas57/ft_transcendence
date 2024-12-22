@@ -1,0 +1,91 @@
+{% extends '_index.html' %}
+{% load static %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/pong/pong-ai.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="content-container">
+    <div id="settings-popup" class="popup centered-popup" style="display: flex;">
+        <div class="settings-header">
+            <h3>Pong Settings</h3><br>
+        </div>
+        <div class="settings-body">
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col">
+                    <select id="theme" class="form-select">
+                        <option value="default" selected>Default Theme</option>
+                        <option value="football">Football</option>
+                        <option value="basketball">Basketball</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col">
+                    <input type="text" class="form-control" id="player1" placeholder="Player1 Name"/>
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col">
+                    <input type="text" class="form-control" id="player2"  placeholder="Player2 Name"/>
+                </div>
+            </div>
+            <p id="warning" style="color: red; display: none;">Duplicate Username</p>
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3">
+                    <label for="score">Score:</label>
+                </div>
+                <div class="col-9">
+                    <select class="form-select" aria-label="Rounds" id="rounds">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3">
+                    <label for="speed">Speed:</label>
+                </div>
+                <div class="col-9">
+                    <select class="form-select" aria-label="Speed" id="speed">
+                        <option value="0.5">Slow</option>
+                        <option value="1" selected>Normal</option>
+                        <option value="1.5">Fast</option>
+                        <option value="2">Very Fast</option>
+                        <option value="2.5">Extreme</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3 text-start">
+                    <label for="paddle-color">Paddle Color:</label>
+                </div>
+                <div class="col-1">
+                    <input type="color" style="width:205px" id="paddle-color" value="#00ff00" />
+                </div>
+            </div>
+
+            <button id="start-game" class="btn btn-primary">Start Game</button>
+        </div>
+    </div>
+
+    <canvas id="gameCanvas" width="700" height="400" style="display: none;"></canvas>
+
+    <div id="result-popup" class="popup centered-popup" style="display: none;">
+        <div id="result-text"></div>
+        <div id="score-text"></div>
+        <div class="button-container">
+            <button id="restart" class="btn btn-primary">Restart</button>
+            <button onclick="pageHandler('/pong')" class="btn btn-danger">Exit</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

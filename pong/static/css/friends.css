@@ -1,0 +1,60 @@
+.friend {
+    background-color: white;
+    border: 3px solid #a0a0a0 !important;
+    border-radius: 12px;
+    display: flex;
+    flex-wrap: nowrap; /* İçerik aynı satırda kalır */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.friend-img-container {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0; /* Görselin küçülmesini engeller */
+}
+
+.friend-img {
+    border: 5px solid transparent;
+    object-fit: cover;
+}
+
+.friend-img-container.online .friend-img {
+    border-color: #28a745;
+}
+
+.friend-img-container.offline .friend-img {
+    border-color: rgb(230, 24, 6);
+}
+
+.friend-img-container.online .status-indicator {
+    background-color: #28a745;
+}
+
+.friend-img-container.offline .status-indicator {
+    background-color: rgb(230, 24, 6);
+}
+
+.text-muted, .text-name {
+    cursor: pointer;
+}
+
+.friend button {
+    flex-shrink: 0; /* Butonun boyutunun küçülmesini engeller */
+}
+
+/* Yalnızca 500px ve daha küçük ekranlar için */
+@media (max-width: 500px) {
+    .friend {
+        flex-direction: column; /* İçerik dikey hizalanır */
+        align-items: flex-start; /* İçerik sola yaslanır */
+    }
+
+    .friend button {
+        margin-top: 10px; /* Butonun bir alt satıra geçmesi için boşluk bırakılır */
+        align-self: flex-start; /* Sol tarafa hizalanır */
+    }
+}

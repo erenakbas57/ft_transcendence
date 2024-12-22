@@ -1,0 +1,305 @@
+{% extends '_index.html' %}
+{% load static %}
+
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/usermanage/profile.css' %}">
+<style>
+    @font-face {
+        font-family: 'YourFont';
+        src: url("{% static 'css/fonts/OCRA.ttf' %}") format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .profile-container {
+        font-family: 'YourFont', sans-serif;
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<div class="container profile-container">
+  <!-- Profile Card -->
+  <div class="row justify-content-center">
+      <div class="col-sm-10 col-lg-6">
+          <div class="profile-card text-center">
+              {% if user.avatar %}
+                <img src="{{ user.avatar.url }}" alt="Profile Picture" class="profile-avatar {% if user.is_online %}online{% else %}offline{% endif %}">
+              {% else %}
+                <img src="https://via.placeholder.com/150" alt="Default Avatar" class="profile-avatar {% if user.is_online %}online{% else %}offline{% endif %}">
+              {% endif %}
+              <div class="profile-info">
+                  <div class="row">
+                      <h2>{% if user.first_name or user.last_name %} {{ user.first_name }} {{ user.last_name }} {%else%} NONAME {%endif%} </h2>
+                  </div>
+                  <div class="row">
+                      <p>@{{ user.username }}</p>
+                  </div>
+                  <div class="col d-flex justify-content-center align-items-center mb-4">
+                      <img class="coin " src="{% static 'assets/m-coin.png' %}" > <span class="coin-text">{{ user.mp }}</span></img>
+                  </div>
+                  <div class="row">
+                      {% if user == request.user %}
+                      <div class="col mt-3 my-4">
+                          <a onclick="pageHandler('/profile/{{ user.username }}/edit')"
+                              class="btn btn-primary w-50 m-2">Edit Profile</a>
+                          {% if not user.is_42 %}
+                          <a onclick="pageHandler('/profile/{{ user.username }}/change_password')"
+                              class="btn btn-secondary w-50">Change Password</a>
+                          {% endif %}
+                      </div>
+                      {% endif %}
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  {% if user.username == request.user.username or stats %}
+        <!-- Stats Card -->
+        <div class="mt-5 row justify-content-center">
+            <h2 class="history-header text-center">Game Statistics</h2>
+            <div class="accordion col-md-6 col-lg-6" id="gameStatsAccordion">
+                <!-- Pong Statistics -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="pongHeader">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pongStats" aria-expanded="false" aria-controls="pongStats">
+                            <i class="fas fa-gamepad"></i> Pong Statistics
+                        </button>
+                    </h2>
+                    <div id="pongStats" class="accordion-collapse collapse" aria-labelledby="pongHeader" data-bs-parent="#gameStatsAccordion">
+                        <div class="accordion-body">
+                            <div class="stat-item">
+                                <strong>Wins:</strong> <span>{{ user.pong_total_wins }}</span>
+                            </div>
+                            <div class="stat-item">
+                                <strong>Losses:</strong> <span>{{ user.pong_total_losses }}</span>
+                            </div>
+                            <div class="stat-item">
+                                <strong>Win/Loss Rate:</strong> <span>{{ win_rate_pong }}%</span>
+                            </div>
+                            <div class="stat-item">
+                                <strong>Total Matches:</strong> <span>{{ user.pong_total_matches }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RPS Statistics -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="rpsHeader">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rpsStats" aria-expanded="false" aria-controls="rpsStats">
+                            <i class="fas fa-hand-paper"></i> RPS Statistics
+                        </button>
+                    </h2>
+                    <div id="rpsStats" class="accordion-collapse collapse" aria-labelledby="rpsHeader" data-bs-parent="#gameStatsAccordion">
+                        <div class="accordion-body">
+                            <div class="stat-item">
+                                <strong>Wins:</strong> <span>{{ user.rps_total_wins }}</span>
+                            </div>
+                            <div class="stat-item">
+                                <strong>Losses:</strong> <span>{{ user.rps_total_losses }}</span>
+                            </div>
+                            <div class="stat-item">
+                                <strong>Win/Loss Rate:</strong> <span>{{ win_rate_rps }}%</span>
+                            </div>
+                            <div class="stat-item">
+                                <strong>Total Matches:</strong> <span>{{ user.rps_total_matches }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mt-5 row justify-content-center">
+            <h2 class="history-header text-center">Game Charts</h2>
+            <div class="accordion col-md-6 col-lg-6" id="gameChartAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="pongHeader">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pongChart" aria-expanded="false" aria-controls="pongChart">
+                            Pong Charts
+                        </button>
+                    </h2>
+                    <div id="pongChart" class="accordion-collapse collapse" aria-labelledby="pongHeader" data-bs-parent="#gameChartAccordion">
+                        <div class="accordion-body" id="pong-stats" data-wins="{{ user.pong_total_wins }}" data-losses="{{ user.pong_total_losses }}">
+                            <canvas id="PongPieChart"></canvas>
+                            <h5 class="chart-label">Pong</h5>
+                            <p class="chart-label"><span >Win</span> / <span >Lose</span></p>
+                            <p class="chart-label"><span >{{ user.pong_total_wins }}</span> / <span >{{ user.pong_total_losses }}</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="rpsHeader">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rpsCharts" aria-expanded="false" aria-controls="rpsCharts">
+                            RPS Charts
+                        </button>
+                    </h2>
+                    <div id="rpsCharts" class="accordion-collapse collapse" aria-labelledby="rpsHeader" data-bs-parent="#gameChartAccordion">
+                        <div class="accordion-body" id="rps-stats" data-wins="{{ user.rps_total_wins }}" data-losses="{{ user.rps_total_losses }}">
+                            <canvas id="RPSPieChart"></canvas>
+                            <h5 class="chart-label">RPS</h5>
+                            <p class="chart-label"><span >Win</span> / <span >Lose</span></p>
+                            <p class="chart-label"><span >{{ user.rps_total_wins }}</span> / <span >{{ user.rps_total_losses }}</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="totalHeader">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#totalChart" aria-expanded="false" aria-controls="totalChart">
+                            Total Match Charts
+                        </button>
+                    </h2>
+                    <div id="totalChart" class="accordion-collapse collapse" aria-labelledby="totalHeader" data-bs-parent="#gameChartAccordion">
+                        <div class="accordion-body" id="total-stats" data-wins="{{ user.pong_total_wins }}" data-losses="{{ user.pong_total_losses }}">
+                            <canvas id="GamePieChart"></canvas>
+                            <h5 class="chart-label">Total Games</h5>
+                            <p class="chart-label"><span>Pong</span> / <span>RPS</span></p>
+                            <p class="chart-label"><span>{{ user.pong_total_matches }}</span> / <span>{{ user.rps_total_matches }}</span></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class=" my-5 row justify-content-center">
+            <h2 class="history-header text-center">Game History</h2>
+            <div class="accordion col-md-6 col-lg-6 " id="gameHistoryAccordion">
+                <!-- Pong History Accordion -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="pongHistoryHeader">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pongHistory"  aria-expanded="false" aria-controls="pongHistory">
+                            Pong Matches History
+                        </button>
+                    </h2>
+                    <div id="pongHistory" class="accordion-collapse collapse" aria-labelledby="pongHistoryHeader" data-bs-parent="#gameHistoryAccordion">
+                        <div class="accordion-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">You</th>
+                                        <th scope="col">Opponent</th>
+                                        <th scope="col">Result</th>
+                                        <th scope="col">Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for game in pong_page %}
+                                    <tr>
+                                        <td class="{% if game.user1_score > game.user2_score %}text-success{% else %}text-danger{% endif %}">{{ game.user1 }}</td>
+                                        <td class="{% if game.user2_score > game.user1_score %}text-success{% else %}text-danger{% endif %}">{{ game.user2 }}</td>
+                                        <td>{{ game.user1_score }} - {{game.user2_score}}</td>
+                                        <td>{{ game.time_duration }} sec</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="4">No matches found</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <!-- Sayfalama Kontrolleri -->
+                            <nav>
+                                <ul class="pagination justify-content-center">
+                                    {% if pong_page.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?pong_page={{ pong_page.previous_page_number }}">Previous</a>
+                                    </li>
+                                    {% endif %}
+
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Page {{ pong_page.number }} of {{ pong_page.paginator.num_pages }}</span>
+                                    </li>
+
+                                    {% if pong_page.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?pong_page={{ pong_page.next_page_number }}">Next</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- RPS History Accordion -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="rpsHistoryHeader">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rpsHistory" aria-expanded="false" aria-controls="rpsHistory">
+                            RPS Matches History
+                        </button>
+                    </h2>
+                    <div id="rpsHistory" class="accordion-collapse collapse" aria-labelledby="rpsHistoryHeader" data-bs-parent="#gameHistoryAccordion">
+                        <div class="accordion-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">You</th>
+                                        <th scope="col">Opponent</th>
+                                        <th scope="col">Result</th>
+                                        <th scope="col">Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for game in rps_page %}
+                                    <tr>
+                                        <td class="{% if game.user1_score > game.user2_score %}text-success{% else %}text-danger{% endif %}">{{ game.user1 }}</td>
+                                        <td class="{% if game.user2_score > game.user1_score %}text-success{% else %}text-danger{% endif %}">{{ game.user2 }}</td>
+                                        <td>{{ game.user1_score }} - {{game.user2_score}}</td>
+                                        <td>{{ game.time_duration }} sec</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="4">No matches found</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <!-- Sayfalama Kontrolleri -->
+                            <nav>
+                                <ul class="pagination justify-content-center">
+                                    {% if rps_page.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" onclick="pageHandler('/profile/{{user.username}}/?rps_page={{ rps_page.previous_page_number }}')">Previous</a>
+                                    </li>
+                                    {% endif %}
+
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Page {{ rps_page.number }} of {{ rps_page.paginator.num_pages }}</span>
+                                    </li>
+
+                                    {% if rps_page.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" onclick="pageHandler('/profile/{{user.username}}/?rps_page={{ rps_page.next_page_number }}')">Next</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    {% endif%}
+
+</div>
+
+
+{% endblock %}

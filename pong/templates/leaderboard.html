@@ -1,0 +1,109 @@
+{% extends '_index.html' %}
+{% load static %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/leader.css' %}">
+<style>
+    @font-face {
+        font-family: 'YourFont';
+        src: url("{% static 'css/fonts/OCRA.ttf' %}") format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .profile-container {
+        font-family: 'YourFont', sans-serif;
+    }
+
+
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Leaderboard</h1>
+
+    <!-- First Place -->
+    <div class="row mb-4 justify-content-center">
+        <div class="col-12 col-md-6 ">
+            <div class="leader-card first-place py-4" onclick="pageHandler('/profile/{{ user_first.user.username }}')">
+                {% if user_first.user.avatar %}
+                    <img src="{{ user_first.user.avatar.url }}" alt="Leader" class="leader-avatar">
+                {% else %}
+                    <img src="https://via.placeholder.com/100" alt="Friend" class="rounded-circle friend-img" width="50px" height="50px">
+                {% endif %}
+                <div class="medal medal-first">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h2 class="mt-3 text-uppercase">{{ user_first.user.username }}</h2>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img class="coin " width="40px" src="{% static 'assets/m-coin.png' %}" > <span class="coin-text">{{ user_first.user.mp }}</span></img>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Second and Third Place -->
+    <div class="row mb-4">
+        <!-- Second Place -->
+        <div class="col-6 ">
+            <div class="leader-card second-place py-4" onclick="pageHandler('/profile/{{ user_second.user.username }}')">
+                {% if user_second.user.avatar %}
+                    <img src="{{ user_second.user.avatar.url }}" alt="Leader" class="leader-avatar">
+                {% else %}
+                    <img src="https://via.placeholder.com/100" alt="Friend" class="rounded-circle friend-img" width="50px" height="50px">
+                {% endif %}
+                <div class="medal medal-second">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h2 class="mt-3 text-uppercase">{{ user_second.user.username }}</h2>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img class="coin " width="40px" src="{% static 'assets/m-coin.png' %}" > <span class="coin-text">{{ user_second.user.mp }}</span></img>
+                </div>
+            </div>
+        </div>
+        <!-- Third Place -->
+        <div class="col-6">
+            <div class="leader-card third-place py-4" onclick="pageHandler('/profile/{{ user_third.user.username }}')">
+                {% if user_third.user.avatar %}
+                    <img src="{{ user_third.user.avatar.url }}" alt="Leader" class="leader-avatar">
+                {% else %}
+                    <img src="https://via.placeholder.com/100" alt="Friend" class="rounded-circle friend-img" width="50px" height="50px">
+                {% endif %}
+                <div class="medal medal-third">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h2 class="mt-3 text-uppercase">{{ user_third.user.username }}</h2>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img class="coin " width="40px" src="{% static 'assets/m-coin.png' %}" > <span class="coin-text">{{ user_third.user.mp }}</span></img>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Remaining Players (4 to 10) -->
+    <div class="row pb-5">
+        {% for user in users_other%}
+        <div class="col-md-4 col-sm-6 my-3">
+            <div class="leader-card py-4" onclick="pageHandler('/profile/{{ user.user.username }}')">
+                <div class="rank-number">#{{user.rank}}</div>
+                {% if user.user.avatar %}
+                    <img src="{{ user.user.avatar.url }}" alt="Leader" class="leader-avatar">
+                {% else %}
+                    <img src="https://via.placeholder.com/100" alt="Friend" class="rounded-circle friend-img" width="50px" height="50px">
+                {% endif %}
+                <h2 class="mt-3 text-uppercase">{{ user.user.username }}</h2>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img class="coin " width="40px" src="{% static 'assets/m-coin.png' %}" > <span class="coin-text">{{ user.user.mp }}</span></img>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

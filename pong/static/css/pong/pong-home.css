@@ -1,0 +1,180 @@
+
+
+/* Hero Header */
+.hero {
+    background-color: #007bff; /* Ana mavi renk */
+    color: white;
+    padding: 50px 0;
+    border-radius: 10px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* Kartların içerik yüksekliğini eşitle */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Tüm kartların eşit yüksekliğe sahip olmasını sağlar */
+    min-height: 250px; /* Kartların minimum yüksekliğini belirler */
+}
+
+/* Responsive düzen */
+@media (max-width: 767.98px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .col-md-3 {
+        flex: 0 0 100%; /* Bir satırda bir kart */
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .col-md-3 {
+        flex: 0 0 50%; /* Bir satırda iki kart */
+    }
+}
+
+@media (min-width: 1200px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .col-md-3 {
+        flex: 0 0 25%; /* Bir satırda dört kart */
+    }
+}
+
+/* Kartlar arası boşluk */
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+/* İçerik renkleri ve ikonları (isteğe bağlı) */
+.icon-color {
+    color: #007bff;
+}
+
+.btn {
+    margin-top: auto; /* Butonların alt kısma sabitlenmesi */
+}
+
+
+/* Kart Tasarımı */
+.game-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+}
+
+.game-card:hover {
+    transform: scale(1.05); /* Hover efekt */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Hover gölgelendirme */
+}
+
+/* Kart İçeriği */
+.game-card .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.game-card .card-text {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Farklı Renkler İçin Stil */
+.local-game {
+    background-color: #e6f7ff; /* Açık mavi */
+    border-top: 5px solid #007bff; /* Mavi kenarlık */
+}
+
+.tournament {
+    background-color: #f9f9f9; /* Açık gri */
+    border-top: 5px solid #28a745; /* Yeşil kenarlık */
+}
+
+.ai-game {
+    background-color: #f2f9fc; /* Çok açık mavi */
+    border-top: 5px solid #ff4500; /* Turuncu kenarlık */
+}
+
+.multiplayer {
+    background-color: #eaf7f3; /* Açık yeşil */
+    border-top: 5px solid #17a2b8; /* Mavi-yeşil kenarlık */
+}
+
+/* Butonlar */
+.btn {
+    color: white;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.btn-local {
+    background-color: #007bff;
+}
+
+.btn-local:hover {
+    background-color: #0056b3;
+}
+
+.btn-tournament {
+    background-color: #28a745;
+}
+
+.btn-tournament:hover {
+    background-color: #218838;
+}
+
+.btn-ai {
+    background-color: #ff4500;
+}
+
+.btn-ai:hover {
+    background-color: #d43f00;
+}
+
+.btn-multiplayer {
+    background-color: #17a2b8;
+}
+
+.btn-multiplayer:hover {
+    background-color: #138496;
+}
+
+/* İkon Renkleri */
+.icon-color {
+    color: #007bff; /* Mavi ikonlar */
+}
+
+/* Kartlar Arası Boşluk */
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.col-md-3 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.mb-4 {
+    margin-bottom: 30px;
+}

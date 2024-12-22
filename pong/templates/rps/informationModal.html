@@ -1,0 +1,260 @@
+{% load static %}
+
+<div class="modal fade v-50" id="info" tabindex="-1" aria-labelledby="info" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="friendsModalLabel">GamePlay</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+          <div class=" row justify-content-center">
+            <div class="accordion col-md-12" id="gameStatsAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header justify-content-center" id="redHeader">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#red" aria-expanded="false" aria-controls="red">
+                        <img src="{% static 'assets/rps/red.png' %}" width="50px" class="pe-3"> Redpill - Profile Analysis
+                    </button>
+                </h2>
+                <div id="red" class="accordion-collapse collapse" aria-labelledby="redHeader" data-bs-parent="#gameStatsAccordion">
+                    <div class="accordion-body">
+                        <div class="stat-item mb-4">
+                            <p class="text-muted fst-italic">"With the redpill, the person grasps the facts. But sometimes even the truth doesn't matter."</p>
+                        </div>
+                        <div class="stat-item mb-4">
+                            <strong>Wins against these opponents:</strong>
+                            <ul class="list-unstyled mt-2">
+                                <li>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'assets/rps/blue.png' %}" width="40px" class="pe-3">
+                                        <span><strong>BluePill</strong> - "The truth is better than living a lie, even if it hurts"</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'assets/rps/architect.png' %}" width="40px" class="pe-3">
+                                        <span><strong>Architect</strong> - "Codes may be perfect, but humans are not."</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="stat-item mb-4">
+                            <strong>Loses against these opponents:</strong>
+                            <ul class="list-unstyled mt-2">
+                              <li>
+                                  <div class="d-flex align-items-center">
+                                      <img src="{% static 'assets/rps/code.png' %}" width="40px" class="pe-3">
+                                      <span><strong>SourceCode</strong> - "Mathematics never fails"</span>
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="d-flex align-items-center">
+                                      <img src="{% static 'assets/rps/oracle.png' %}" width="40px" class="pe-3">
+                                      <span><strong>Oracle</strong> - "Faith is even above facts."</span>
+                                  </div>
+                              </li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            
+              <div class="accordion-item">
+                <h2 class="accordion-header justify-content-center" id="codeHeader">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#code" aria-expanded="false" aria-controls="code">
+                        <img src="{% static 'assets/rps/code.png' %}" width="50px" class="pe-3"> SourceCode - Profile Analysis
+                    </button>
+                </h2>
+                <div id="code" class="accordion-collapse collapse" aria-labelledby="codeHeader" data-bs-parent="#gameStatsAccordion">
+                    <div class="accordion-body">
+                        <div class="stat-item mb-4">
+                            <p class="text-muted fst-italic">"This thing that comes from mathematics works perfectly. But it is not invincible."</p>
+                        </div>
+                        <div class="stat-item mb-4">
+                            <strong>Wins against these opponents:</strong>
+                            <ul class="list-unstyled mt-2">
+                                <li>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'assets/rps/red.png' %}" width="40px" class="pe-3">
+                                        <span><strong>RedPill</strong> - "Mathematics never fails"</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'assets/rps/oracle.png' %}" width="40px" class="pe-3">
+                                        <span><strong>Oracle</strong> - "Beliefs can blind people, but apparent truths never can."</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="stat-item mb-4">
+                            <strong>Loses against these opponents:</strong>
+                            <ul class="list-unstyled mt-2">
+                              <li>
+                                  <div class="d-flex align-items-center">
+                                      <img src="{% static 'assets/rps/architect.png' %}" width="40px" class="pe-3">
+                                      <span><strong>Architect</strong> - "Simply press a button to clear the codes."</span>
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="d-flex align-items-center">
+                                      <img src="{% static 'assets/rps/blue.png' %}" width="40px" class="pe-3">
+                                      <span><strong>BluePill</strong> - "Ignorant people who do not care about the truth always win."</span>
+                                  </div>
+                              </li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+              </div>
+  
+              <div class="accordion-item">
+                <h2 class="accordion-header justify-content-center" id="pongHeader">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pongStats" aria-expanded="false" aria-controls="pongStats">
+                        <img src="{% static 'assets/rps/blue.png' %}" width="50px" class="pe-3"> BluePill - Profile Analysis
+                    </button>
+                </h2>
+                <div id="pongStats" class="accordion-collapse collapse" aria-labelledby="pongHeader" data-bs-parent="#gameStatsAccordion">
+                    <div class="accordion-body">
+                        <div class="stat-item mb-4">
+                            <p class="text-muted fst-italic">"Being happy is important. It doesn't matter the facts."</p>
+                        </div>
+                        <div class="stat-item mb-4">
+                            <strong>Wins against these opponents:</strong>
+                            <ul class="list-unstyled mt-2">
+                                <li>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'assets/rps/code.png' %}" width="40px" class="pe-3">
+                                        <span><strong>SourceCode</strong> - "Facts are unimportant to him."</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'assets/rps/architect.png' %}" width="40px" class="pe-3">
+                                        <span><strong>Architect</strong> - "It who does not care about the truth does not care about its creator."</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="stat-item mb-4">
+                            <strong>Loses against these opponents:</strong>
+                            <ul class="list-unstyled mt-2">
+                              <li>
+                                  <div class="d-flex align-items-center">
+                                      <img src="{% static 'assets/rps/red.png' %}" width="40px" class="pe-3">
+                                      <span><strong>RedPill</strong> - "It has no chance against the Red Pill"</span>
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="d-flex align-items-center">
+                                      <img src="{% static 'assets/rps/oracle.png' %}" width="40px" class="pe-3">
+                                      <span><strong>Oracle</strong> - "The fulfillment of the prophecy means the end of happiness."</span>
+                                  </div>
+                              </li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+              </div>
+  
+              <div class="accordion-item">
+                <h2 class="accordion-header justify-content-center" id="architect">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#architect-modal" aria-expanded="true" aria-controls="architect-modal">
+                        <img src="{% static 'assets/rps/architect.png' %}" width="50px" class="pe-3"> Architect - Profile Analysis
+                    </button>
+                </h2>
+                <div id="architect-modal" class="accordion-collapse collapse" aria-labelledby="architect" data-bs-parent="#gameStatsAccordion">
+                    <div class="accordion-body">
+                        <div class="stat-item mb-4">
+                            <p class="text-muted fst-italic">"He is the architect of everything."</p>
+                        </div>
+                        <div class="stat-item mb-4">
+                            <strong>Wins against these opponents:</strong>
+                            <ul class="list-unstyled mt-2">
+                                <li>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'assets/rps/code.png' %}" width="40px" class="pe-3">
+                                        <span><strong>SourceCode</strong> - "Simply press a button to clear the codes."</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'assets/rps/oracle.png' %}" width="40px" class="pe-3">
+                                        <span><strong>Oracle</strong> - "Even oracle cannot interfere with some truths."</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="stat-item mb-4">
+                            <strong>Loses against these opponents:</strong>
+                            <ul class="list-unstyled mt-2">
+                              <li>
+                                  <div class="d-flex align-items-center">
+                                      <img src="{% static 'assets/rps/red.png' %}" width="40px" class="pe-3">
+                                      <span><strong>RedPill</strong> - "Codes may be perfect, but humans are not."</span>
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="d-flex align-items-center">
+                                      <img src="{% static 'assets/rps/blue.png' %}" width="40px" class="pe-3">
+                                      <span><strong>BluePill</strong> - "It who does not care about the truth does not care about its creator."</span>
+                                  </div>
+                              </li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+              </div>
+  
+              <div class="accordion-item">
+                <h2 class="accordion-header justify-content-center" id="oracle">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#oracle-modal" aria-expanded="true" aria-controls="oracle-modal">
+                        <img src="{% static 'assets/rps/oracle.png' %}" width="50px" class="pe-3"> Oracle - Profile Analysis
+                    </button>
+                </h2>
+                <div id="oracle-modal" class="accordion-collapse collapse" aria-labelledby="oracle" data-bs-parent="#gameStatsAccordion">
+                    <div class="accordion-body">
+                        <div class="stat-item mb-4">
+                            <p class="text-muted fst-italic">"Faith conquers many, many things"</p>
+                        </div>
+                        <div class="stat-item mb-4">
+                            <strong>Wins against these opponents:</strong>
+                            <ul class="list-unstyled mt-2">
+                                <li>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'assets/rps/blue.png' %}" width="40px" class="pe-3">
+                                        <span><strong>BluePill</strong> - "The fulfillment of the prophecy means the end of happiness."</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'assets/rps/red.png' %}" width="40px" class="pe-3">
+                                        <span><strong>RedPill</strong> - "Faith is even above facts."</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="stat-item mb-4">
+                            <strong>Loses against these opponents:</strong>
+                            <ul class="list-unstyled mt-2">
+                              <li>
+                                  <div class="d-flex align-items-center">
+                                      <img src="{% static 'assets/rps/architect.png' %}" width="40px" class="pe-3">
+                                      <span><strong>Architect</strong> - "Even oracle cannot interfere with some truths."</span>
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="d-flex align-items-center">
+                                      <img src="{% static 'assets/rps/code.png' %}" width="40px" class="pe-3">
+                                      <span><strong>SourceCode</strong> - "Beliefs can blind people, but apparent truths never can."</span>
+                                  </div>
+                              </li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>

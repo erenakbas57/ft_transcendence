@@ -1,0 +1,118 @@
+{% extends '_index.html' %}
+{% load static %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/pong/pong-multiplayer.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="content-container">
+
+    <div id="settings-popup" class="popup centered-popup" style="display: flex;">
+        <div class="settings-header">
+            <h3>Multi Pong Settings</h3> <br>
+        </div>
+        <div class="settings-body">
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3">
+                    <label for="theme">Theme:</label>
+                </div>
+                <div class="col-9">
+                    <select id="theme" class="form-select">
+                        <option value="default" selected>Default Theme</option>
+                        <option value="football">Football</option>
+                        <option value="basketball">Basketball</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3">
+                    <label for="rounds">Score:</label>
+                </div>
+                <div class="col-9">
+                    <select class="form-select" aria-label="Rounds" id="rounds">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3">
+                    <label for="speed">Speed:</label>
+                </div>
+                <div class="col-9">
+                    <select class="form-select" aria-label="Speed" id="speed">
+                        <option value="0.5">Slow</option>
+                        <option value="1" selected>Normal</option>
+                        <option value="1.5">Fast</option>
+                        <option value="2">Very Fast</option>
+                        <option value="2.5">Extreme</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3 text-start">
+                    <label for="player1-name">Player 1:</label>
+                </div>
+                <div class="col-9">
+                    <input type="text" id="player1-name" class="form-control" placeholder="Player1 (w,s)">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3 text-start">
+                    <label for="player2-name">Player 2:</label>
+                </div>
+                <div class="col-9">
+                    <input type="text" id="player2-name" class="form-control" placeholder="Player2 (⬆️⬇️)">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3 text-start">
+                    <label for="player3-name">Player 3:</label>
+                </div>
+                <div class="col-9">
+                    <input type="text" id="player3-name" class="form-control" placeholder="Player3 (v,b)">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3 text-start">
+                    <label for="player4-name">Player 4:</label>
+                </div>
+                <div class="col-9">
+                    <input type="text" id="player4-name" class="form-control" placeholder="Player4 (k,l)">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3 text-start">
+                    <label for="paddle-color">Paddle Color:</label>
+                </div>
+                <div class="col-1">
+                    <input type="color" style="width:265px" id="paddle-color" value="#00ff00" />
+                </div>
+            </div><br>
+            <p id="error-message" class="error-message" style="display: none;">Duplicate Username</p>
+            <button id="start-game" class="btn btn-primary">Start Game</button>
+        </div>
+    </div>
+</br></br></br>
+    <canvas id="gameCanvas" width="600" height="600" style="display: none;"></canvas>
+
+    <div id="result-popup" class="popup centered-popup" style="display: none;">
+        <div id="result-text"></div>
+        <div id="score-text"></div>
+        <div class="button-container">
+            <button id="restart" class="btn btn-primary">Restart</button>
+            <button id="quit" onclick="pageHandler('/pong')" class="btn btn-danger">Exit</button>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+{% endblock %}

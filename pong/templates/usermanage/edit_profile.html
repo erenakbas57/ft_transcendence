@@ -1,0 +1,54 @@
+{% extends '_index.html' %}
+
+{% load static %}
+
+
+
+{% block stylesheet%}
+    <link rel="stylesheet" href="{% static 'css/usermanage/edit_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center mt-4">
+    <div class="card shadow-lg border-0 p-4" style="max-width: 400px; width: 100%;">
+        <div class="row">
+            <div class="col-1">
+                <a onclick="pageHandler('/profile/{{user.username}}')">
+                    <i class="fa-solid fa-circle-chevron-left fa-xl"></i>
+                </a>
+            </div>
+            <div class="col-11">
+                <h1 class="text-center mb-4 text-primary">Edit Profile</h1>
+            </div>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" id="editProfile" action="{% url 'edit_profile' user.username %}" onsubmit="event.preventDefault(); handleProfileEdit('editProfile');">
+            {% csrf_token %}
+            <div class="d-flex justify-content-center align-items-center mb-2">
+                <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'img/placeholder.png' %}{% endif %}" class="img-fluid rounded-circle shadow" style="width: 120px; height: 120px; object-fit: cover;">
+            </div>
+            <div class="form-group form-group-edit-profile">
+                <input type="file" class="form-control" id="avatar" name="avatar">
+            </div>
+
+            <div class="form-group form-group-edit-profile">
+                <input type="text" class="form-control" id="username" name="username" value="{{ user.username|default:user.username }}" required>
+            </div>
+            <div class="form-group form-group-edit-profile">
+                <input type="email" class="form-control" id="email" name="email" value="{{ user.email|default:user.email }}" required>
+            </div>
+            <div class="form-group form-group-edit-profile">
+                <input type="text" class="form-control" id="first_name" name="first_name" value="{{ user.first_name|default:'Firstname' }}" required>
+            </div>
+            <div class="form-group form-group-edit-profile">
+                <input type="text" class="form-control" id="last_name" name="last_name" value="{{ user.last_name|default:'Lastname' }}" required>
+            </div>
+
+
+            <div style="text-align: center;">
+                <button type="submit" class="btn btn-success">Save Changes</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

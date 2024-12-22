@@ -1,0 +1,133 @@
+/* General Design */
+.profile-container {
+  margin-top: 30px;
+  font-family: 'Arial', sans-serif;
+}
+
+.profile-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  
+  border: 5px solid #ddd;
+}
+
+#pong-stats, #rps-stats, #total-stats {
+  border: 2px solid #c0c0c0;
+  border-radius: 12px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column; /* Dikey sıralama */
+  justify-content: center; /* Dikey ortalama */
+  align-items: center; /* Yatay ortalama */
+  text-align: center; /* Metinleri ortalama */
+  height: 100%; /* Gerekirse yükseklik ayarı */
+}
+
+.profile-avatar.online {
+  border-color: rgb(62, 220, 62);
+}
+
+.profile-avatar.offline {
+  border-color: red;
+}
+
+.profile-info {
+  margin-top: 15px;
+}
+
+.profile-info h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.profile-info p {
+  font-size: 18px;
+  color: #777;
+}
+
+.coin {
+  
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.coin-text {
+  font-size:24px;
+}
+
+.stat-item {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.chart-label {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* This helps with responsiveness */
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+  word-wrap: break-word; /* Ensures that text wraps within table cells */
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.page-link {
+  color: #007bff;
+}
+
+.page-item.disabled .page-link {
+  color: #6c757d;
+}
+
+/* Accordion Styling */
+.accordion-button {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.accordion-item {
+  margin-bottom: 15px;
+}
+
+.accordion-header {
+  background-color: #f8f9fa;
+}
+
+.accordion-body {
+  padding: 20px;
+}
+
+.text-success {
+  color: #28a745;
+}
+
+.text-danger {
+  color: #dc3545;
+}

@@ -1,0 +1,45 @@
+{% extends '_index.html' %}
+
+{% load static %}
+
+{% block title %}{{ user.username }} Friends Page{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/friends.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 row justify-content-center">
+    <h3 class="mb-4 text-center">Friends List</h3>
+
+    <div class="friends-list row justify-content-center col-md-6 col-lg-5" id="friendsList">
+        {% for friend in friends_status %}
+            <div class="friend d-flex justify-content-between align-items-center p-2 mb-3 " id="friend-{{ friend.username }}">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="friend-img-container {% if friend.is_online %}online{% else %}offline{% endif %}" onclick="pageHandler('/profile/{{friend.username}}')">
+                        {% if friend.avatar_url %}
+                            <img src="{{ friend.avatar_url }}" alt="Friend" class="rounded-circle friend-img" width="50px" height="50px">
+                        {% else %}
+                            <img src="https://via.placeholder.com/75" alt="Friend" class="rounded-circle friend-img" width="50px" height="50px">
+                        {% endif %}
+                    </div>
+                    <div>
+                        <div class="text-name" onclick="pageHandler('/profile/{{friend.username}}')"><strong>{{ friend.first_name }} {{ friend.last_name }}</strong></div>
+                        <div class="text-muted" onclick="pageHandler('/profile/{{friend.username}}')">@{{ friend.username }}</div>
+                    </div>
+                </div>
+
+                <button class="btn btn-danger btn-sm ms-2" onclick="handleUnfollowFriend('{{ friend.username }}', this)">
+                    Unfollow
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+
+
+
+{% endblock %}

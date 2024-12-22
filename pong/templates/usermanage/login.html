@@ -1,0 +1,40 @@
+{% extends '_index.html' %}
+
+{% load static %}
+
+
+
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/usermanage/login.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center mt-4">
+    <div class="card shadow-lg border-0 p-4" style="max-width: 400px; width: 100%;">
+        <h1 class="text-center mb-4 text-primary">Login</h1>
+
+        <form id="loginForm" action="{% url 'login' %}" method="post" onsubmit="event.preventDefault(); handleLogin('loginForm');">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Login</button>
+        </form>
+
+        <p class="text-center my-3">OR</p>
+
+        <a href="{% url 'login_with_42' %}" class="btn btn-outline-primary w-100 mb-2" id="apiLoginButton">
+            <span>Login via </span>
+            <img src="{% static 'assets/42.png' %}" alt="42 Logo" style="height: 20px;">
+        </a>
+
+        <button onclick="pageHandler('/register')" class="btn btn-outline-secondary w-100">Register</button>
+    </div>
+</div>
+{% endblock %}

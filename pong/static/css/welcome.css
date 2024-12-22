@@ -1,0 +1,101 @@
+/* Genel ayarlar */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f9ff;
+    color: #333;
+}
+
+/* Welcome kapsayıcı */
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 70px); /* Navbar'ın yüksekliğini düş */
+    text-align: center;
+    padding: 20px;
+}
+
+/* İç kutu tasarımı */
+.welcome-box {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border: 3px solid #e0e7ff;
+}
+
+/* Başlık ve açıklama */
+.welcome-box h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #4a6ee0;
+}
+
+.welcome-box p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+/* Buton grubu */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn-login {
+    background-color: #4caf50;
+    color: white;
+    border: 2px solid #43a047;
+}
+
+.btn-login:hover {
+    background-color: #43a047;
+    transform: scale(1.05);
+}
+
+.btn-register {
+    background-color: #2196f3;
+    color: white;
+    border: 2px solid #1e88e5;
+}
+
+.btn-register:hover {
+    background-color: #1e88e5;
+    transform: scale(1.05);
+}
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+    .welcome-box {
+        padding: 20px;
+    }
+
+    .welcome-box h1 {
+        font-size: 28px;
+    }
+
+    .welcome-box p {
+        font-size: 16px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}

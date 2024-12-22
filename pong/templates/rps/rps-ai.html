@@ -1,0 +1,122 @@
+{% extends '_index.html' %}
+
+{% load static %}
+
+
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/rps/rps-ai.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pong/pong-home.css' %}">
+{% endblock stylesheet %}
+
+
+{% block content %}
+
+{% include 'rps/informationModal.html'%}
+
+<header class="row text-center justify-content-center">
+  <h1>Welcome to the Real Game!</h1>
+  <p class="card-text">Rock Paper Scissors is gone. There is a new theme.</br>
+    Redpill - SourceCode - BluePill</br>
+    if you want you can try ultimate mode and try two extra choice</p>
+  <button type="button" class="col-3  btn btn-warning mb-2 warn-btn" data-bs-toggle="modal" data-bs-target="#info"><i class="fa-solid fa-circle-info mx-2"></i>Information</button>
+</header>
+
+<div class=" start-container container my-5" id="start-container">
+  <div class="row text-center justify-content-center">
+    <div class="col-md-4 col-lg-4 col-xl-4 col-sm-8 col-xs-8 mb-4 ">
+      <div class="card p-3 setting-card">
+        <div class="row">
+          <div class="col">
+            <h3> RPS Settings</h3>
+          </div>
+        </div>
+        <form id="settingsForm" onsubmit="startGame(event)">
+          <div class="row justify-content-center align-items-center my-3">
+            <div class="col-3">
+              <label for="score">Score:</label>
+            </div>
+            <div class="col-9">
+              <select class="form-select" aria-label="Score" id="score">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+          <div class="row justify-content-center align-items-center my-3">
+            <div class="col-3">
+              <label for="mode">Mode:</label>
+            </div>
+            <div class="col-9">
+              <select class="form-select" aria-label="Default Mode" id="mode">
+                <option value="1" selected>Default</option>
+                <option value="2">Ultimate</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 text-wrap text-center">Start Game</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="game-container d-none" id="game-container">
+  <div class="scoreboard row">
+    <div class="col-6">
+      <h3>{{user.username}} Score:<span id="playerScore">0</span></h3>
+    </div>
+    <div class="col-6">
+      <h3>AI Score:<span id="aiScore">0</span></h3>
+    </div>
+  </div>
+
+  <div class="container mt-3">
+    <div class="row text-center gy-3 justify-content-center " id="choices">
+      <div class="col-4 col-sm-4 col-md-2">
+        <button class="btn" onclick="makeChoice('red')">
+          <img src="{% static 'assets/rps/red.png' %}" alt="red" class="img-fluid">
+        </button>
+        <p>RedPill</p>
+      </div>
+      <div class="col-4 col-sm-4 col-md-2">
+        <button class="btn" onclick="makeChoice('code')">
+          <img src="{% static 'assets/rps/code.png' %}" alt="code" class="img-fluid">
+        </button>
+        <p>SourceCode</p>
+      </div>
+      <div class="col-4 col-sm-4 col-md-2">
+        <button class="btn" onclick="makeChoice('blue')">
+          <img src="{% static 'assets/rps/blue.png' %}" alt="blue" class="img-fluid">
+        </button>
+        <p>BluePill</p>
+      </div>
+    </div>
+  </div>
+  <div id="result" class="row results-container d-none justify-content-center text-center">
+    <div id="userChoice" class="col-4">
+      <img src="{% static 'assets/rps/red.png' %}" alt="Your Choice" class="img-fluid">
+    </div>
+    <div id="resultText" class="col-4 result-text">Make your move!</div>
+    <div id="aiChoice" class="col-4">
+      <img src="{% static 'assets/rps/blue.png' %}" alt="AI Choice" class="img-fluid">
+    </div>
+  </div>
+
+</div>
+
+<div id="exit" class="popup centered-popup" style="display: none;">
+  <div id="exitResult"></div>
+  <div class="button-container">
+      <button id="restart" onclick="restartGame()" class="btn btn-primary">Restart</button>
+      <button id="quit" onclick="pageHandler('/home')" class="btn btn-danger">Exit</button>
+  </div>
+</div>
+
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+{% endblock %}

@@ -1,0 +1,154 @@
+/* Özel sınıf için ortak stil */
+.custom-button {
+    display: inline-block;
+    width: 150px;
+    /* Masaüstünde sabit genişlik */
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    /* Hover efekti için animasyon */
+}
+
+/* Başarı (Login) butonu */
+.custom-button.btn-success {
+    background-color: #28a745;
+    color: #fff;
+    border: 2px solid #218838;
+}
+
+.custom-button.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* Kayıt (Register) butonu */
+.custom-button.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: 2px solid #0056b3;
+}
+
+.custom-button.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #003f7f;
+}
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+    .custom-button {
+        width: 100%;
+        /* Mobilde tam genişlik */
+        margin-bottom: 10px;
+        /* Butonlar arasında boşluk */
+    }
+}
+
+
+
+
+
+
+
+
+/* Navbar için temel ayarlar */
+.navbar {
+    padding: 10px 15px;
+    background-color: #343a40;
+    /* Bootstrap'in bg-dark rengini destekler */
+}
+
+/* Aktif buton stili */
+.nav-link.active {
+    color: #0F0!important; /* Aktif olduğunda yazı rengi */
+    font-weight: bold; /* Yazıyı kalınlaştır */
+    border-bottom: 2px solid #ffffff; /* Çevresine beyaz bir çerçeve ekler */
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff !important;
+    margin-right: auto;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-color: #ffffff;
+    border-radius: 3px;
+}
+
+/* Navbar öğelerinin genel stili */
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    /* Öğeleri yatayda ortalar */
+    align-items: center;
+    width: 100%;
+    /* Mobil cihazlarda ortalama için */
+}
+
+.nav-item {
+    margin: 5px;
+}
+
+.nav-link {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff !important;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-logout:hover {
+    background-color: rgb(163, 0, 0) !important;
+}
+
+/* Özel butonlar */
+.custom-button {
+    display: inline-block;
+    width: 120px;
+    text-align: center;
+}
+
+/* Responsive ayarlar */
+@media (max-width: 990px) {
+    .navbar-collapse {
+        text-align: center;
+        /* Mobilde öğeler ortalanır */
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        /* Mobilde menü dikey olur */
+    }
+
+    .nav-item {
+        margin: 10px 0;
+    }
+}
+
+/* Mobil navbarın açılma animasyonu */
+.collapse:not(.show) {
+    display: none;
+}
+
+.collapse.show {
+    display: block;
+}
+
+
+a:hover {
+    cursor: pointer;
+    /* Mouse üzerine geldiğinde tıklama şekli olur */
+}

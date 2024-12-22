@@ -1,0 +1,33 @@
+{% extends '_index.html' %}
+
+{% load static %}
+
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container mt-4">
+    <!-- Search Input Group -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-12 col-md-8 col-lg-6">
+            <form id="searchForm" action="{% url 'search' %}" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input name="search_query" type="text" class="form-control" placeholder="Search" required>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="searchButton" onclick="handleSearch('searchForm')">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row search-result justify-content-center" id="searchResults">
+    </div>
+</div>
+{% endblock %}

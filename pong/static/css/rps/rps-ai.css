@@ -1,0 +1,114 @@
+.game-container {
+  text-align: center;
+  margin-top: 50px;
+}
+.choices {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px; 
+  justify-content: center;
+  align-items: center;
+}
+.choiceButton {
+  text-align: center;
+}
+.choiceButton img {
+  width: 48px;
+  height: auto;
+}
+.choiceButton p {
+  margin-top: 5px;
+  font-size: 18px;
+  color: black;
+}
+.choiceButton img {
+  width: 120px;
+  height: 120px;
+}
+.results-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px auto;
+  max-width: 600px;
+  font-size: 20px;
+}
+.results-container div {
+  width: 30%;
+}
+.result-text {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+#result {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+#userChoice, #aiChoice {
+  text-align: center;
+}
+
+.gold {
+  color: gold;
+}
+.warn-btn {
+  min-width: 200px;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: #f0f0f0;
+  border-radius: 10px;
+  padding: 20px;
+  width: 320px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  height: auto; 
+}
+
+.accordion-body {
+background-color: #f8f9fa;
+border-radius: 5px;
+padding: 20px;
+box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat-item {
+font-size: 14px;
+line-height: 1.6;
+}
+
+.stat-item strong {
+color: #333;
+}
+
+ul.list-unstyled {
+margin: 0;
+padding: 0;
+}
+
+ul.list-unstyled li {
+margin-bottom: 10px;
+}
+
+img.rounded-circle {
+border: 2px solid #ddd;
+}
+
+.setting-card {
+  background: rgba(0, 0, 0, 0.85);
+  color: #f0f0f0;
+  border-radius: 10px;
+}

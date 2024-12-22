@@ -1,0 +1,22 @@
+{% extends '_index.html' %}
+
+{% load static %}
+
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="welcome-container">
+    <div class="welcome-box">
+        <h1>Welcome to Pong</h1>
+        <p>Your gateway to exciting competitions and fun! Ready to get started?</p>
+        <div class="button-group">
+            <button class="btn btn-login" onclick="pageHandler('/login')">Login</button>
+            <button class="btn btn-register" onclick="pageHandler('/register')">Register</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,200 @@
+{% extends '_index.html' %}
+{% load static %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/pong/pong-ai.css' %}">
+
+<style>
+    #match-popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+        width: 80%;
+        max-width: 600px;
+        display: none;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    thead th {
+        background-color: #2C3E50;
+        color: white;
+        padding: 10px;
+        font-size: 1.1em;
+        border: 1px solid #34495E;
+        height: 15px;
+    }
+
+    tbody td {
+        padding: 12px;
+        font-size: 1em;
+        color: #2C3E50;
+        border: 1px solid #BDC3C7;
+        word-wrap: break-word;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 150px;
+        height: 15px;
+    }
+
+    .button-container {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    button#start-game {
+        padding: 10px 20px;
+        background-color: #E74C3C;
+        color: white;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button#start-game:hover {
+        background-color: #C0392B;
+    }
+
+    @media (max-width: 768px) {
+        #match-popup {
+            width: 90%;
+        }
+        table {
+            font-size: 0.9em;
+        }
+
+        tbody td {
+            max-width: 100px;
+        }
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div id="content-container">
+
+    <div id="settings-popup" class="popup centered-popup" style="display: flex;">
+        <div class="settings-header">
+            <h3>Pong Tournament Settings</h3>
+        </div>
+        <div class="settings-body">
+            <div class="row mb-2 justify-content-start align-items-center">
+                <div class="col-12">
+                    <select id="theme" class="form-select">
+                        <option value="default" selected>Default Theme</option>
+                        <option value="football">Football</option>
+                        <option value="basketball">Basketball</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row justify-content-start align-items-center">
+                <div class="col-12 mb-2">
+                    <input type="text" class="form-control" id="player1" placeholder="Player1"/>
+                </div>
+                <div class="col-12 mb-2">
+                    <input type="text" class="form-control" id="player2" placeholder="Player2" />
+                </div>
+                <div class="col-12 mb-2">
+                    <input type="text" class="form-control" id="player3" placeholder="Player3" />
+                </div>
+                <div class="col-12 mb-2">
+                    <input type="text" class="form-control" id="player4" placeholder="Player4" />
+                </div>
+                <p id="warning" style="color: red; display: none;">Duplicate Username</p>
+            </div>
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3">
+                    <label for="score">Score:</label>
+                </div>
+                <div class="col-9">
+                    <select class="form-select" aria-label="Rounds" id="rounds">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-start align-items-center">
+                <div class="col-3">
+                    <label for="speed">Speed:</label>
+                </div>
+                <div class="col-9">
+                    <select class="form-select" aria-label="Speed" id="speed">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </div>
+
+            <button id="next-popup" class="btn btn-primary">Start Game</button>
+        </div>
+    </div>
+
+    <div id="match-popup" class="popup centered-popup" style="display: none;">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Match</th>
+                    <th>Player1</th>
+                    <th>Player2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>First Match</td>
+                    <td id="first-match-player1"></td>
+                    <td id="first-match-player2"></td>
+                </tr>
+                <tr>
+                    <td>Second Match</td>
+                    <td id="second-match-player1"></td>
+                    <td id="second-match-player2"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="button-container justify-content-center">
+            <button id="start-game" class="btn btn-danger">Start Game</button>
+        </div>
+    </div>
+
+    <canvas id="gameCanvas" width="700" height="400" style="display: none;"></canvas>
+    <div id="result-popup" class="popup centered-popup" style="display: none;">
+        <div id="result-text"></div>
+        <div id="score-text"></div>
+        <div id="next-match"></div>
+        <div class="button-container justify-content-center">
+            <button id="next-match-btn" class="btn btn-danger">Start Next Match</button>
+        </div>
+    </div>
+
+    <div id="exit-popup" class="popup centered-popup" style="display: none;">
+        <div id="final-result-text"></div>
+        <div class="button-container">
+            <button id="restart" class="btn btn-primary">Restart</button>
+            <button onclick="pageHandler('/pong')" class="btn btn-danger">Exit</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
